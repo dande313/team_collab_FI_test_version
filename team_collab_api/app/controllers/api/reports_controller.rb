@@ -4,6 +4,11 @@ class Api::ReportsController < ApplicationController
     render json: @reports
   end
 
+  def show
+    @report = Report.find_by(id: params[:id])
+    render json: @report
+  end
+
   def create
     @report = Report.new(report_params)
     if @report.save
@@ -12,6 +17,16 @@ class Api::ReportsController < ApplicationController
       render json: { errors: { message: "Report failed to save." } }
     end
   end
+
+  def update
+    @report = Report.find_by(id: params[:id])
+    if @report.update(report_params)
+      render json: Report.all, status:201
+    else
+      render json: { message: @report.errors }, status: 400
+    end
+  end
+
 
   def destroy
     id = (params[:id])
@@ -25,6 +40,6 @@ class Api::ReportsController < ApplicationController
 
   private
     def report_params
-      params.require(:report).permit(:title, :info, :repo_url, :assistance_needed, :user_email)
+      params.require(:report).permit(:title, :info, :repo_url, :assistance_needed, :user_email, :clicks)
     end
 end

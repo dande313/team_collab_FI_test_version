@@ -16,6 +16,13 @@ export const fetchReports = () => {
   }
 }
 
+export const increment = (key)  => {
+  return {
+    type: 'INCREMENT_CLICKS',
+    key
+  }
+}
+
 const prependReport = report => {
   return {
     type: 'SUCCESSFUL_CREATE_REPORT',
@@ -50,3 +57,23 @@ export const deleteReport = (report, routerHistory) => {
       })
   }
 }
+
+  export function addClicks(report) {
+     return (dispatch) => {
+       dispatch({ type: 'ADD_CLICKS' })
+       return fetch(`http://localhost:3001/api/reports/${report.id}`, {
+         method:'PATCH',
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+           clicks: report.clicks + 1
+         })
+       })
+       .then((res) => res.json())
+       .then((responseJson) => {dispatch({ type: 'SUCCESSFULLY_ADDED_CLICK', payload: responseJson })
+       return responseJson
+       })
+     }
+   }

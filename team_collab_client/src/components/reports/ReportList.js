@@ -20,7 +20,7 @@ class ReportList extends Component {
       <table className="reports-table">
         <tbody>
           <tr className="table-header">
-            <th>Report Name</th><th>Date</th><th>Time</th><th>Info</th><th>User</th><th>Assistance needed?</th><th>counter</th>
+            <th>Project</th><th>Date</th><th>Time</th><th>User</th><th>Assistance needed?</th><th>Clicks</th>
           </tr>
           {renderReports}
         </tbody>        

@@ -19,6 +19,6 @@ infos = ["Completed AI, need to transfer from CLI to Heroku", "Article show page
 
 70.times do 
 	project_info = projects.sample
-	new_report = Report.create(title: project_info[:title], repo_url: project_info[:repo_url], user_email: user_emails.sample, info: infos.sample, assistance_needed: assistance_needs.sample)
+	new_report = Report.create(title: project_info[:title], repo_url: project_info[:repo_url], user_email: user_emails.sample, info: infos.sample, assistance_needed: assistance_needs.sample, clicks: 0)
 end
 

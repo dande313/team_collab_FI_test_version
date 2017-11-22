@@ -11,7 +11,8 @@ class AddReport extends Component {
       assistance_needed: false,
       info: '',
       repo_url: '',
-      user_email: localStorage.getItem('team_collab.email')
+      user_email: localStorage.getItem('team_collab.email'),
+      clicks: 0
     }
   }
 
