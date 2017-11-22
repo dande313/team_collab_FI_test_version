@@ -58,22 +58,18 @@ export const deleteReport = (report, routerHistory) => {
   }
 }
 
-  export function addClicks(report) {
-     return (dispatch) => {
-       dispatch({ type: 'ADD_CLICKS' })
-       return fetch(`http://localhost:3001/api/reports/${report.id}`, {
-         method:'PATCH',
-         headers: {
-           'Accept': 'application/json',
-           'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({
-           clicks: report.clicks + 1
-         })
-       })
-       .then((res) => res.json())
-       .then((responseJson) => {dispatch({ type: 'SUCCESSFULLY_ADDED_CLICK', payload: responseJson })
-       return responseJson
-       })
-     }
+const updateReportClick = report => {
+  return {
+    type: 'SUCCESSFULLY_ADDED_CLICK',
+    payload: report
+  }
+}
+
+export const addClicks = (report, routerHistory) => {
+   return dispatch => {
+     return ReportService.addClick(report)
+      .then(report => {
+      dispatch(updateReportClick(report));
+    })
    }
+ }
