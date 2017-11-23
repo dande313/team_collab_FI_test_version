@@ -10,7 +10,9 @@ export default function reports(state = [], action){
     case 'ADD_CLICKS':
       return state
     case 'SUCCESSFULLY_ADDED_CLICKS':
-      return action.payload
+      let updatedReport = state.filter(report => report.id === action.id)
+      console.log(updatedReport)
+      return state.concat(updatedReport)
     default:
       return state;
   }

@@ -61,11 +61,11 @@ export const deleteReport = (report, routerHistory) => {
 const updateReportClick = report => {
   return {
     type: 'SUCCESSFULLY_ADDED_CLICK',
-    payload: report
+    id: report.id
   }
 }
 
-export const addClicks = (report, routerHistory) => {
+export const addClicks = (report) => {
    return dispatch => {
      return ReportService.addClick(report)
       .then(report => {

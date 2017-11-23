@@ -19,6 +19,7 @@ class ReportLi extends Component {
     this.setState({ clicks: this.state.clicks +1 })
     reportAttributes['clicks'] = this.state.clicks;
     this.props.actions.addClicks(reportAttributes);
+    this.props.actions.fetchReports();
   }
 
   render(){
