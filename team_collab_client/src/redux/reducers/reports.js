@@ -7,12 +7,10 @@ export default function reports(state = [], action){
       return state.concat(report)
     case 'SUCESSFUL_DELETE_REPORT':
       return state.filter(report => report.id !== action.id)
-    case 'ADD_CLICKS':
+    case 'ADD_CLICK':
       return state
-    case 'SUCCESSFULLY_ADDED_CLICKS':
-      let updatedReport = state.filter(report => report.id === action.id)
-      console.log(updatedReport)
-      return state.concat(updatedReport)
+    case 'SUCCESSFULLY_ADDED_CLICK':
+      return action.payload
     default:
       return state;
   }
