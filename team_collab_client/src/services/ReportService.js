@@ -35,10 +35,12 @@ const ReportService = {
            'Content-Type': 'application/json'
          },
          body: JSON.stringify({
+           id: report.id,
            clicks: report.clicks + 1
          })
     })
   }
 }
+
 
 export default ReportService;

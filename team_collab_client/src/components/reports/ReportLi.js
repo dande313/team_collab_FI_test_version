@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-import * as actions from '../../redux/actions/reports.js';
+import { addClicks } from '../../redux/actions/reports.js';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 class ReportLi extends Component {
 
@@ -15,9 +14,9 @@ class ReportLi extends Component {
 
   handleClick = (event) => {
     const reportAttributes = {id: this.props.report.id};
-    this.setState({ clicks: this.state.clicks +1 })
     reportAttributes['clicks'] = this.state.clicks;
-    this.props.actions.addClicks(reportAttributes);
+    this.setState({ clicks: this.state.clicks +1 })
+    this.props.addClicks(reportAttributes);
   }
 
   render(){
@@ -36,12 +35,8 @@ class ReportLi extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {actions: bindActionCreators(actions, dispatch)}
-}
-
 const mapStateToProps = (state) => {
   return ({ reports: state.reports })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReportLi);
+export default connect(mapStateToProps, {addClicks})(ReportLi);
