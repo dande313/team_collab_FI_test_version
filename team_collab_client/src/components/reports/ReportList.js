@@ -12,6 +12,7 @@ class ReportList extends Component {
       return 0;
     })
 
+    
     const renderReports = sorted_reports.map(report => 
       <ReportLi key={report.id} report={report} />
     );

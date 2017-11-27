@@ -5,17 +5,10 @@ import { connect } from 'react-redux';
 
 class ReportLi extends Component {
 
-  constructor(props) {
-   super(props)
-   this.state = {
-     clicks: this.props.report.clicks || 0
-   }
- }
-
   handleClick = (event) => {
     const reportAttributes = {id: this.props.report.id};
-    reportAttributes['clicks'] = this.state.clicks;
-    this.setState({ clicks: this.state.clicks +1 })
+    reportAttributes['clicks'] = this.props.report.clicks;
+    
     this.props.addClicks(reportAttributes);
   }
 
@@ -29,7 +22,7 @@ class ReportLi extends Component {
         <td> {report.created_at.substring(11, 19)}</td>
         <td> {report.user_email}</td>
         {report.assistance_needed ? (<td className="flagged-red"> yes </td>) : (<td> no </td>)}
-      <td><button onClick={this.handleClick}> Clicks: {this.state.clicks} </button></td>
+      <td><button onClick={this.handleClick}> Clicks: {this.props.report.clicks} </button></td>
       </tr>
     )
   }
